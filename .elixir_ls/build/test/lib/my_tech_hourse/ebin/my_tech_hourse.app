@@ -1,0 +1,12 @@
+{application,my_tech_hourse,
+             [{applications,[kernel,stdlib,elixir,logger,timex,jason,
+                             httpoison,postgrex,ecto_sql]},
+              {description,"my_tech_hourse"},
+              {modules,['Elixir.AirPollutionServer','Elixir.ClimateServer',
+                        'Elixir.GardenServer',
+                        'Elixir.MyTechHourse.Application',
+                        'Elixir.Plants.Plant','Elixir.Plants.Repo',
+                        'Elixir.RefrigeratorServer']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.MyTechHourse.Application',[]}}]}.

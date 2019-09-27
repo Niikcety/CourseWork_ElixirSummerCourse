@@ -119,7 +119,7 @@ defmodule GardenServer do
       percentage_of_growing_plants2() > 40 ->
         GenServer.call(__MODULE__, :cond_ch2_down)
       true ->
-        GenServer.call(__MODULE__, :cond_ch2_down)
+        GenServer.call(__MODULE__, :cond_ch2_up)
     end
   end
 
@@ -214,17 +214,17 @@ end
 
 def handle_call(:cond_ch1_up, _from, state) do
   IO.puts "Garden number one is better"
-  {:reply, :garden1_down, condition_changer1_up(state)}
+  {:reply, :garden1_up, condition_changer1_up(state)}
 end
 
 def handle_call(:cond_ch2_down, _from, state) do
   IO.puts "Garden number two is worse"
-  {:reply, :garden1_down, condition_changer2_down(state)}
+  {:reply, :garden2_down, condition_changer2_down(state)}
 end
 
 def handle_call(:cond_ch2_up, _from, state) do
   IO.puts "Garden number two is better"
-  {:reply, :garden1_down, condition_changer2_up(state)}
+  {:reply, :garden2_up, condition_changer2_up(state)}
 end
 
   ## Helper functions
@@ -260,7 +260,7 @@ end
 
 
   ## Percentage of not growing plants - if more than 40% starting rottening process
-  defp  percentage_of_growing_plants1() do
+  def  percentage_of_growing_plants1() do
    state = print()
    plants = state[:garden1][:plants]
    humidity = state[:garden1][:humidity]
@@ -269,7 +269,7 @@ end
   end
 
   ## Percentage of not growing plants - if more than 40% starting rottening process
-  defp percentage_of_growing_plants2() do
+  def percentage_of_growing_plants2() do
     state = print()
     plants = state[:garden2][:plants]
     humidity = state[:garden2][:humidity]
